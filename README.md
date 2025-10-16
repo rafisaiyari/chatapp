@@ -1,5 +1,5 @@
 # chatapp
-Fullstack Chat Application and Website with my classmates.
+Real-time Fullstack Chat Application and Website utilizing web sockets.
 
 Feature Highlights:
  One-to-one messaging,
