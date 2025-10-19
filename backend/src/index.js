@@ -1,5 +1,7 @@
-import express from "express";
 import dotenv from "dotenv";
+dotenv.config()
+
+import express from "express";
 import {connectDB} from "./lib/db.js";
 import cors from "cors";
 
@@ -12,7 +14,7 @@ import cookieParser from "cookie-parser";
 
 import {app, server} from "./lib/socket.js";
 
-dotenv.config()
+
 
 const PORT = process.env.PORT;
 const __dirname = path.resolve();
