@@ -57,7 +57,7 @@ export const useChatStore = create((set, get) => ({
   
         set({
           messages: [...get().messages, newMessage],
-        });w  
+        });  
       });
     },
   
