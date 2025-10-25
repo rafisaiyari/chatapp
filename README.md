@@ -1,5 +1,5 @@
 # chatapp
-Fullstack Chat Application and Website with my classmates.
+Fullstack Chat Application and Website. Try here https://buckchat.onrender.com/login
 
 Feature Highlights:
  One-to-one messaging,
