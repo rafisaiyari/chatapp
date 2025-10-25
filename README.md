@@ -2,7 +2,7 @@
 
 # BuckChat
 
-### A Modern Real-Time Fullstack Chat Application
+### A Real-Time Fullstack Chat Application
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://buckchat.onrender.com/login)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -90,7 +90,7 @@ BuckChat is a production-ready, full-stack chat application that brings the powe
 Before you begin, ensure you have the following installed:
 - Node.js (v16 or higher)
 - npm or yarn
-- MongoDB (or PostgreSQL)
+- MongoDB 
 - Git
 
 ### Installation
@@ -140,10 +140,8 @@ cd frontend
 npm start
 ```
 
-The application will be available at:
-- Frontend: `http://localhost:3000`
-- Backend API: `http://localhost:5000`
-- WebSocket: `http://localhost:5001`
+The application will be available at(production):
+(http://localhost:5173/)
 
 ---
 
@@ -316,10 +314,6 @@ Want to help build any of these features? Check out our [Contributing Guide](#-c
 }
 ```
 
-For complete API documentation, visit [API Docs](docs/API.md)
-
----
-
 ## 🔒 Security
 
 - **Encryption**: All messages are encrypted end-to-end
@@ -360,7 +354,7 @@ See also the list of [contributors](https://github.com/rafisaiyari/chatapp/contr
 - **Documentation**: [Wiki](https://github.com/rafisaiyari/chatapp/wiki)
 - **Issues**: [GitHub Issues](https://github.com/rafisaiyari/chatapp/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/rafisaiyari/chatapp/discussions)
-- **Email**: support@buckchat.com
+- **Email**: rafisaiyari0814@gmail.com
 
 ---
 
@@ -368,6 +362,6 @@ See also the list of [contributors](https://github.com/rafisaiyari/chatapp/contr
 
 **[⬆ back to top](#-buckchat)**
 
-Made with ❤️ by the BuckChat Team
+Made with ❤️
 
 </div>
