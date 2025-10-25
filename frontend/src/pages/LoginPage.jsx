@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import { useAuthStore } from '../store/useAuthStore'
-import { Loader2, MessageSquare } from "lucide-react";
-import { User, Mail, Lock, EyeOff, Eye } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Loader2, MessageSquare, Mail, Lock, EyeOff, Eye } from "lucide-react"
+import { Link } from "react-router-dom"
 import ShapesDesign from "../components/ShapesDesign"
-import toast from "react-hot-toast"
 
 const LoginPage = () => {
   const [showPassword, setShowPassword]  = useState(false)
@@ -105,8 +103,10 @@ const LoginPage = () => {
       </div>
 
       {/* Right side */}
-      <div className="flex flex-col justify-center items-center p-6 sm:p-12 bg-base-200">
-      <ShapesDesign/>
+      <div className="flex flex-col justify-center items-center p-6 sm:p-12 bg-base-200 space-y-8 h-screen overflow-hidden">
+      <div className="mt-12 sm:mt-25">
+        <ShapesDesign/>
+      </div>
       <div className="flex flex-col justify-center items-center p-8 text-center bg-base-primary">
                 <div className="mb-6">
                     <h2 className="text-3xl font-bold text-primary">Create, Connect, Have Fun</h2>

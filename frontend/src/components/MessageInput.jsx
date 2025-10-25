@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useChatStore } from "../store/useChatStore";
 import { Image, Send, X } from "lucide-react";
 import toast from "react-hot-toast";
@@ -9,7 +9,13 @@ const MessageInput = () => {
   const [imagePreview, setImagePreview] = useState(null)
   const [isSending, setIsSending] = useState(false)
   const fileInputRef = useRef(null)
+  const textInputRef = useRef(null)
   const { sendMessage } = useChatStore()
+
+  // Auto-focus on mount
+  useEffect(() => {
+    textInputRef.current?.focus();
+  }, []);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -57,6 +63,10 @@ const MessageInput = () => {
       console.error("Failed to send message:", error);
     } finally {
       setIsSending(false);
+      // keep the focus on text box after sending
+      setTimeout(() => {
+        textInputRef.current?.focus();
+      }, 0);
     }
   }
 
@@ -85,6 +95,7 @@ const MessageInput = () => {
     <form onSubmit={handleSendMessage} className="flex items-center gap-2">
       <div className="flex-1 flex gap-2">
         <input
+          ref={textInputRef}
           type="text"
           className="w-full input input-bordered rounded-lg input-sm sm:input-md"
           placeholder="Type a message..."

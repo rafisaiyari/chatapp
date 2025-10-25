@@ -4,12 +4,15 @@ import { Loader2, MessageSquare } from "lucide-react";
 import { User, Mail, Lock, EyeOff, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import ShapesDesign from "../components/ShapesDesign"
-import toast from "react-hot-toast"
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-
+    fullName: "",
+    email: "",
+    password: "",
+  })
+  const [errors, setErrors] = useState({
     fullName: "",
     email: "",
     password: "",
@@ -17,23 +20,82 @@ const SignUpPage = () => {
   
   const { signup, isSigningUp } = useAuthStore();
 
-  const validateForm = () => {
-    if (!formData.fullName.trim()) return toast.error("Full name is required")
-    if (!formData.email.trim()) return toast.error("Email is required")
-    if (!/\S+@\S+\.\S+/.test(formData.email)) return toast.error("Please enter a valid email address")
-    if (!formData.password) return toast.error("Password is required")
-    if (formData.password.length < 6) return toast.error("Password must be atleast 8 characters")
-  
-    return true
+  const validateFullName = (fullName) => {
+    if (!fullName.trim()) {
+      return "Full name is required"
+    }
+    return ""
   }
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!email.trim()) {
+      return "Email is required"
+    }
+    if (!emailRegex.test(email)) {
+      return "Please enter a valid email address"
+    }
+    return ""
+  }
+
+  const validatePassword = (password) => {
+    if (!password) {
+      return "Password is required"
+    }
+    if (password.length < 8) {
+      return "Password must be at least 8 characters"
+    }
+    if (!/[A-Z]/.test(password)) {
+      return "Password must contain at least one uppercase letter"
+    }
+    if (!/[a-z]/.test(password)) {
+      return "Password must contain at least one lowercase letter"
+    }
+    if (!/[0-9]/.test(password)) {
+      return "Password must contain at least one number"
+    }
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      return "Password must contain at least one special character"
+    }
+    return ""
+  }
+
+  const handleFullNameChange = (e) => {
+    const fullName = e.target.value
+    setFormData({...formData, fullName})
+    setErrors({...errors, fullName: validateFullName(fullName)})
+  }
+
+  const handleEmailChange = (e) => {
+    const email = e.target.value
+    setFormData({...formData, email})
+    setErrors({...errors, email: validateEmail(email)})
+  }
+
+  const handlePasswordChange = (e) => {
+    const password = e.target.value
+    setFormData({...formData, password})
+    setErrors({...errors, password: validatePassword(password)})
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const success = validateForm();
+    // Validate all fields before submitting
+    const fullNameError = validateFullName(formData.fullName)
+    const emailError = validateEmail(formData.email)
+    const passwordError = validatePassword(formData.password)
+    
+    if (fullNameError || emailError || passwordError) {
+      setErrors({
+        fullName: fullNameError,
+        email: emailError,
+        password: passwordError,
+      })
+      return
+    }
 
-    if (success === true) signup(formData);
+    signup(formData);
   };
 
   return (
@@ -62,13 +124,17 @@ const SignUpPage = () => {
               </div>
               <input
                 type="text"
-                className={`input input-bordered w-full pl-10`}
+                className={`input input-bordered w-full pl-10 ${errors.fullName ? 'input-error' : ''}`}
                 placeholder="Juan dela Cruz"
                 value={formData.fullName}
-                onChange={(e) => setFormData({...formData, fullName: e.target.value })}
+                onChange={handleFullNameChange}
               />  
-
             </div>
+            {errors.fullName && (
+              <label className="label">
+                <span className="label-text-alt text-error">{errors.fullName}</span>
+              </label>
+            )}
             </div>
             
             <div className="form-control">
@@ -81,13 +147,17 @@ const SignUpPage = () => {
               </div>
               <input
                 type="email"
-                className={`input input-bordered w-full pl-10`}
+                className={`input input-bordered w-full pl-10 ${errors.email ? 'input-error' : ''}`}
                 placeholder="juandelacruz@email.com"
                 value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value })}
+                onChange={handleEmailChange}
               />  
-
             </div>
+            {errors.email && (
+              <label className="label">
+                <span className="label-text-alt text-error">{errors.email}</span>
+              </label>
+            )}
             </div>
 
             <div className="form-control">
@@ -100,10 +170,10 @@ const SignUpPage = () => {
               </div>
               <input
                 type={showPassword ? "text" : "password"}
-                className={`input input-bordered w-full pl-10`}
+                className={`input input-bordered w-full pl-10 ${errors.password ? 'input-error' : ''}`}
                 placeholder="********"
                 value={formData.password}
-                onChange={(e) => setFormData({...formData, password: e.target.value })}
+                onChange={handlePasswordChange}
               />  
               <button
                 type="button"
@@ -116,6 +186,11 @@ const SignUpPage = () => {
                   )}
               </button>
             </div>
+            {errors.password && (
+              <label className="label">
+                <span className="label-text-alt text-error">{errors.password}</span>
+              </label>
+            )}
             </div>
             
             <button type="submit" className="btn btn-primary w-full" disabled={isSigningUp}>

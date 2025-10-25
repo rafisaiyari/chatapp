@@ -5,10 +5,8 @@ import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import SettingsPage from "./pages/SettingsPage";
 import ProfilePage from "./pages/ProfilePage";
-import { Navigate } from "react-router-dom";
+import { Navigate, Routes, Route } from "react-router-dom";
 import {Loader} from "lucide-react";
-
-import { Routes, Route } from "react-router-dom";
 import { useAuthStore } from "./store/useAuthStore";
 import { useThemeStore } from "./store/useThemeStore";
 import { useEffect } from "react";
@@ -18,6 +16,8 @@ const App = () => {
   const {authUser, checkAuth, isCheckingAuth, onlineUsers} = useAuthStore();
   const {theme} = useThemeStore();
 
+  console.log({numberOfUsersOnline: onlineUsers.length});
+
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
@@ -25,8 +25,6 @@ const App = () => {
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
-
-  console.log({authUser});
 
   if (isCheckingAuth && !authUser) 
     return (
