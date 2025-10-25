@@ -1,13 +1,30 @@
 import { create } from "zustand";
 
+const THEME_KEY = "app-theme";
+const DEFAULT_THEME = "retro";
+
+const getStoredTheme = () => {
+  try {
+    return localStorage.getItem(THEME_KEY) || DEFAULT_THEME;
+  } catch {
+    return DEFAULT_THEME;
+  }
+};
+
+const applyTheme = (theme) => {
+  document.documentElement.setAttribute("data-theme", theme);
+};
+
+// Apply immediately on script load (BEFORE store creation)
+const initialTheme = getStoredTheme();
+applyTheme(initialTheme);
+
 export const useThemeStore = create((set) => ({
-  theme: "retro", // Default theme in memory
+  theme: initialTheme,
   
   setTheme: (theme) => {
     set({ theme });
-    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem(THEME_KEY, theme);
+    applyTheme(theme);
   }
 }));
-
-// Set the initial theme on app load
-document.documentElement.setAttribute("data-theme", "retro");
