@@ -79,7 +79,6 @@ BuckChat is a production-ready, full-stack chat application that brings the powe
 ### Infrastructure
 - **Hosting**: Render
 - **CI/CD**: GitHub Actions
-- **Monitoring**: (Your monitoring solution)
 
 ---
 
