@@ -2,7 +2,7 @@
 
 # BuckChat
 
-### A Real-Time Fullstack Chat Application
+### A Real-Time MERN Fullstack Chat Application
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://buckchat.onrender.com/login)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
