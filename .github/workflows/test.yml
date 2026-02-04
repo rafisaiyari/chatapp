@@ -32,6 +32,12 @@ jobs:
       - name: Build frontend
         run: npm run build --prefix frontend
 
+      - name: Lint backend code
+        run: npm run lint --prefix backend
+
+      - name: Build backend
+        run: npm run build --prefix backend
+
       - name: Verify backend syntax
         run: |
           find backend/src -name "*.js" -type f -exec node --check {} \;
