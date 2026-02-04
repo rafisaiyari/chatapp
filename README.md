@@ -210,35 +210,6 @@ chatapp/
 
 ---
 
-## 🔧 Configuration
-
-### Database Setup
-
-**MongoDB**
-```bash
-# Start MongoDB locally
-mongod --dbpath /path/to/data
-
-# Or use MongoDB Atlas for cloud hosting
-```
-
-## 🧪 Testing
-
-```bash
-# Run backend tests
-cd backend
-npm test
-
-# Run frontend tests
-cd frontend
-npm test
-
-# Run end-to-end tests
-npm run test:e2e
-```
-
----
-
 ## 📦 Deployment
 
 ### Deploy to Render
